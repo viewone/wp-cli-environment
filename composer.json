@@ -1,6 +1,7 @@
 {
     "name": "viewone/wp-cli-enviroment",
     "license": "GPL-2.0+",
+    "description": "Enviroment package for wp-cli",
     "authors": [
         {
             "name": "Piotr Kierzniewski",
