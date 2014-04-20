@@ -1,6 +1,6 @@
 {
     "name": "viewone/wp-cli-enviroment",
-    "license": "GPLv3",
+    "license": "GPL-2.0+",
     "authors": [
         {
             "name": "Piotr Kierzniewski",

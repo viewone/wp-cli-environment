@@ -11,7 +11,7 @@
  * @package   WPCLIEnviroment
  * @author    Piotr Kierzniewski <p.kierzniewski@viewone.pl>
  * @copyright 2014 ViewOne Sp. z o.o.
- * @license   http://www.gnu.org/licenses/gpl-3.0.txt GPLv3
+ * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
  * @link      https://github.com/viewone
  */
 
