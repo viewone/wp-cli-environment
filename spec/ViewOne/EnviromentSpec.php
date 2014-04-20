@@ -68,10 +68,10 @@ class EnviromentSpec extends ObjectBehavior
 
     public function getMatchers()
     {
-        return [
+        return array(
             'haveEnv' => function($subject, $env) {
                 return getenv('WP_CLI_CONFIG_PATH') === $env;
             },
-        ];
+        );
     }
 }
