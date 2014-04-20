@@ -1,7 +1,7 @@
 <ruleset name="name-of-your-coding-standard">
  <description>PSR2 coding standard</description>
 
-  <rule ref="psr2"></rule>
+  <rule ref="PSR2"></rule>
   <rule ref="PEAR.Commenting.FileComment"/>
   <rule ref="PEAR.Commenting.FunctionComment"/>
   <rule ref="PEAR.Commenting.InlineComment"/>
