@@ -1,0 +1,29 @@
+{
+    "name": "viewone/wp-cli-enviroment",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Piotr Kierzniewski",
+            "email": "p.kierzniewski@viewone.pl"
+        }
+    ],
+    "require": {
+        "wp-cli/wp-cli": "~0.14"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0",
+        "instaclick/php-code-sniffer": "~1.4",
+        "sebastian/phpcpd": "~2.0",
+        "czproject/phpdepend": "~1.0",
+        "phploc/phploc": "~2.0",
+        "phpmd/phpmd": "2.0.0.*@dev",
+        "fabpot/php-cs-fixer": "~0.4"
+    },
+    "autoload": {
+        "psr-0": {
+            "ViewOne": "src/"
+        },
+        "files": [ "enviroment.php" ]
+    },
+    "minimum-stability": "dev"
+}
