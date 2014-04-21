@@ -32,7 +32,7 @@ class Enviroment
      *
      * @var string
      */
-    private $config;
+    private $config = null;
 
     /**
      * Enviroment
@@ -41,7 +41,7 @@ class Enviroment
      *
      * @var string
      */
-    private $environment;
+    private $environment = null;
 
     /**
      * Set WP_CLI_CONFIG_PATH based on second argument passed to wp
@@ -57,8 +57,7 @@ class Enviroment
      * WP CLI will use config file wp-cli.production.yml
      *
      * Avaiable enviroments are: local, development, testing,
-     * staging, production. Default envirment is local so if
-     * we don't pass any enviroment WP CLI will use wp-cli.local.yml
+     * staging, production.
      *
      * @param string|null $environment Possible enviroemnt
      *
@@ -73,7 +72,7 @@ class Enviroment
         $this->resolveEnviroment($environment);
         $this->resolveConfig();
 
-        if (isset($this->config) && !empty($this->config)) {
+        if ($this->config) {
             putenv("WP_CLI_CONFIG_PATH=" . $this->config);
         }
     }
@@ -84,8 +83,6 @@ class Enviroment
      * This method use global $argv variable to read first argument
      * passed to wp-cli. If argument match one of the avaiable enviroments,
      * method will set enviroment to it and remove this argument from $argv.
-     * In case enviroment won't be valid or won't be passed. Method will set
-     * enviroment to local;
      *
      * For example, if we execute this command:
      * <samp>
@@ -110,10 +107,6 @@ class Enviroment
             unset($argv[1]);
             $this->environment = $environment;
         }
-
-        if ($this->environment === null) {
-            $this->environment = 'local';
-        }
     }
 
     /**
@@ -129,13 +122,16 @@ class Enviroment
 
     private function resolveConfig()
     {
-        $configFile = 'wp-cli.' . $this->environment . '.yml';
-        $configPath = getcwd() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . $configFile;
+        if ($this->environment) {
 
-        if (file_exists($configPath)) {
-            $this->config = $configPath;
-        } else {
-            throw new \Exception('File ' . $configPath . ' doesn\'t exists.');
+            $configFile = 'wp-cli.' . $this->environment . '.yml';
+            $configPath = getcwd() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . $configFile;
+
+            if (file_exists($configPath)) {
+                $this->config = $configPath;
+            } else {
+                throw new \Exception('File ' . $configPath . ' doesn\'t exists.');
+            }
         }
     }
 }
