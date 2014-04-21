@@ -17,7 +17,7 @@
     "sebastian/phpcpd": "~2.0",
     "czproject/phpdepend": "~1.0",
     "phploc/phploc": "~2.0",
-    "phpmd/phpmd": "2.0.0.*@dev",
+    "phpmd/phpmd": "~1.5",
     "fabpot/php-cs-fixer": "~0.4"
   },
   "autoload": {
@@ -25,6 +25,5 @@
       "ViewOne": "src/"
     },
     "files": [ "command.php" ]
-  },
-  "minimum-stability": "dev"
+  }
 }
