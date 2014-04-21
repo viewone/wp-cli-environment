@@ -8,9 +8,6 @@
       "email": "p.kierzniewski@viewone.pl"
     }
   ],
-  "require": {
-    "wp-cli/wp-cli": "~0.15"
-  },
   "require-dev": {
     "phpspec/phpspec": "~2.0",
     "instaclick/php-code-sniffer": "~1.4",
