@@ -33,8 +33,8 @@ else
 \WP_CLI::set_logger( $logger );
 
 try {
-    $enviroment = new \ViewOne\Enviroment();
-    $enviroment->run($env); 
+    $environment = new \ViewOne\Environment();
+    $environment->run($env);
 } catch (Exception $e) {
     \WP_CLI::error( $e->getMessage() );
 }

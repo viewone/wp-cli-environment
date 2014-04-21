@@ -1,9 +1,9 @@
-#WP-CLI-Enviroment
+#WP-CLI-Environment
 
 
 ![image](http://img.shields.io/travis/viewone/wp-cli-environment.svg)
 
-WP-CLI-Enviroment is wp-cli package which add support to have multiple enviroments `wp-cli.yml` files.
+WP-CLI-Environment is wp-cli package which add support to have multiple environments `wp-cli.yml` files.
 
 WP-CLI allow you to have two wp-cli.yml files. One global `wp-cli.yml` and one for local development `wp-cli.local.yml`. This package give you possibility to have additional files and firendly cli tool for using them.
 
@@ -29,7 +29,7 @@ Exec command:
 wp production core download
 ```
 
-WP-CLI will download WordPress using settings in `wp-cli.production.yml` file. Not so impressive. WP-CLI-Enviroment is design to work with multiple `wp-cli.yml` files so now create `wp-cli.developemnt.yml` file in `config` directory with content.
+WP-CLI will download WordPress using settings in `wp-cli.production.yml` file. Not so impressive. WP-CLI-Environment is design to work with multiple `wp-cli.yml` files so now create `wp-cli.developemnt.yml` file in `config` directory with content.
 
 ```
 path: ../

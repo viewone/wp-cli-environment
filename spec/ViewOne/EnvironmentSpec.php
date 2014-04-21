@@ -5,7 +5,7 @@ namespace spec\ViewOne;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class EnviromentSpec extends ObjectBehavior
+class EnvironmentSpec extends ObjectBehavior
 {
 
     public function it_should_set_WP_CLI_CONFIG_PATH_to_wp_cli_production_yml_if_there_is_production_as_argument()

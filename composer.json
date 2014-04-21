@@ -1,7 +1,7 @@
 {
-  "name": "viewone/wp-cli-enviroment",
+  "name": "viewone/wp-cli-environment",
   "license": "GPL-2.0+",
-  "description": "Enviroment package for wp-cli",
+  "description": "Environment package for wp-cli",
   "authors": [
     {
       "name": "Piotr Kierzniewski",
@@ -24,7 +24,7 @@
     "psr-0": {
       "ViewOne": "src/"
     },
-    "files": [ "enviroment.php" ]
+    "files": [ "environment.php" ]
   },
   "minimum-stability": "dev"
 }

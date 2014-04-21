@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Enviroment class
+ * Environment class
  *
  * PHP version 5.3
  *
- * This file is part of WP CLI Enviroment.
+ * This file is part of WP CLI Environment.
  *
  * @category  WPCLI
- * @package   WPCLIEnviroment
+ * @package   WPCLIEnviromment
  * @author    Piotr Kierzniewski <p.kierzniewski@viewone.pl>
  * @copyright 2014 ViewOne Sp. z o.o.
  * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
@@ -17,11 +17,11 @@
 
 namespace ViewOne;
 
-class Enviroment
+class Environment
 {
 
     /**
-     * Avaiable enviroments
+     * Avaiable environments
      *
      * @var array
      */
@@ -35,7 +35,7 @@ class Enviroment
     private $config = null;
 
     /**
-     * Enviroment
+     * Environment
      *
      * Potential values are 'local', 'development', 'testing', 'staging', 'production' or null.
      *
@@ -46,7 +46,7 @@ class Enviroment
     /**
      * Set WP_CLI_CONFIG_PATH based on second argument passed to wp
      *
-     * This method use WP_CLI_CONFIG_PATH enviroment vairable
+     * This method use WP_CLI_CONFIG_PATH environment vairable
      * to pass config file.
      *
      * For example, if we execute this command:
@@ -56,7 +56,7 @@ class Enviroment
      *
      * WP CLI will use config file wp-cli.production.yml
      *
-     * Avaiable enviroments are: local, development, testing,
+     * Avaiable environments are: local, development, testing,
      * staging, production.
      *
      * @param string|null $environment Possible enviroemnt
@@ -69,7 +69,7 @@ class Enviroment
             throw new \Exception('$environment should be string or null insted of ' . gettype($environment) . '.');
         }
 
-        $this->resolveEnviroment($environment);
+        $this->resolveEnvironment($environment);
         $this->resolveConfig();
 
         if ($this->config) {
@@ -78,20 +78,20 @@ class Enviroment
     }
 
     /**
-     * Resolve enviroment based on first argument passed to wp-cli
+     * Resolve environment based on first argument passed to wp-cli
      *
      * This method use global $argv variable to read first argument
-     * passed to wp-cli. If argument match one of the avaiable enviroments,
-     * method will set enviroment to it and remove this argument from $argv.
+     * passed to wp-cli. If argument match one of the avaiable environments,
+     * method will set environment to it and remove this argument from $argv.
      *
      * For example, if we execute this command:
      * <samp>
      * wp production core download
      * </samp>
      *
-     * Method will set enviroment to production
+     * Method will set environment to production
      *
-     * Avaiable enviroments are: local, development, testing,
+     * Avaiable environments are: local, development, testing,
      * staging, production.
      *
      * @param string $environment Possible enviroemnt
@@ -99,7 +99,7 @@ class Enviroment
      * @return void
      */
 
-    private function resolveEnviroment($environment)
+    private function resolveEnvironment($environment)
     {
         global $argv;
 
@@ -110,7 +110,7 @@ class Enviroment
     }
 
     /**
-     * Resolve config path based on enviroment
+     * Resolve config path based on environment
      *
      * Use $environment to resolve config path. If such a file doesn't exists
      * method will throw an exception: File $configPath doesn't exists.
