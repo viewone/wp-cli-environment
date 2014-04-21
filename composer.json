@@ -24,7 +24,7 @@
     "psr-0": {
       "ViewOne": "src/"
     },
-    "files": [ "environment.php" ]
+    "files": [ "command.php" ]
   },
   "minimum-stability": "dev"
 }
