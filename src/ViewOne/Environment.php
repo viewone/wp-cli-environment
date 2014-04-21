@@ -103,7 +103,7 @@ class Environment
     {
         global $argv;
 
-        if (array_search($environment, $this->environments)) {
+        if (array_search($environment, $this->environments) !== false) {
             unset($argv[1]);
             $this->environment = $environment;
         }
