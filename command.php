@@ -2,8 +2,6 @@
 
 if ( !defined( 'WP_CLI' ) ) return;
 
-require_once 'src/ViewOne/Environment.php';
-
 global $argv;
 
 $env = $argv[1];
