@@ -74,4 +74,4 @@ If there is no `wp-cli.environemnt.yml` file. You will se an error about this.
 
 ##The order of precedence
 
-WP-CLI-Environment use `WP_CLI_CONFIG_PATH` environment variable to require specific config file. It means that wp-cli-environemnt has very low priority. If you will have wp-cli.yml or wp-cli.local.yml files in your wordpress root directory, settings from this files will overwrite settings from wp-cli.environemnt.yml.
+WP-CLI-Environment use `WP_CLI_CONFIG_PATH` environment variable to require specific config file. It means that wp-cli-environemnt has very low priority. If you will have wp-cli.yml or wp-cli.local.yml files in your wordpress root directory, settings from this files will overwrite settings from wp-cli.environment.yml.
