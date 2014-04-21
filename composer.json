@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "wp-cli/wp-cli": "~0.14"
+    "wp-cli/wp-cli": "~0.15"
   },
   "require-dev": {
     "phpspec/phpspec": "~2.0",
