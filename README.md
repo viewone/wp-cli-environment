@@ -11,7 +11,7 @@ WP-CLI allow you to have two wp-cli.yml files. One global `wp-cli.yml` and one f
 Create directory `config` and put inside file `wp-cli.production.yml`. Content of `wp-cli.production.yml` is standard `wp-cli.yml` file and it can looks like.
 
 ```
-path: .
+path: ../
 url: http://example.org/
 core config:
   dbname: your_production_dbname
@@ -32,7 +32,7 @@ wp production core download
 WP-CLI will download WordPress using settings in `wp-cli.production.yml` file. Not so impressive. WP-CLI-Enviroment is design to work with multiple `wp-cli.yml` files so now create `wp-cli.developemnt.yml` file in `config` directory with content.
 
 ```
-path: .
+path: ../
 url: http://example.dev.org/
 core config:
   dbname: your_dev_dbname
