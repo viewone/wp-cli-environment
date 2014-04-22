@@ -11,7 +11,7 @@
  * @package   WPCLIEnviromment
  * @author    Piotr Kierzniewski <p.kierzniewski@viewone.pl>
  * @copyright 2014 ViewOne Sp. z o.o.
- * @license   http://www.gnu.org/licenses/gpl-2.0.txt GPL-2.0+
+ * @license   http://opensource.org/licenses/MIT MIT
  * @link      https://github.com/viewone
  */
 

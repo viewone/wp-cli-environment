@@ -1,6 +1,6 @@
 {
   "name": "viewone/wp-cli-environment",
-  "license": "GPL-2.0+",
+  "license": "MIT",
   "description": "Environment package for wp-cli",
   "authors": [
     {
