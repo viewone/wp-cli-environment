@@ -18,10 +18,12 @@ if ( is_readable( $config_path ) ){
     list( $config, $extra_config ) = $configurator->to_array();
 }
 
-if ( 'auto' === $config['color'] ) {
-  $colorize = !\cli\Shell::isPiped();
-} else {
-  $colorize = $config['color'];
+if ( isset($config['color']) && 'auto' === $config['color'] ) {
+    $colorize = !\cli\Shell::isPiped();
+} elseif(isset($config['color'])) {
+    $colorize = $config['color'];
+}else {
+    $colorize = true;
 }
 
 if ( isset($config['quiet']) && $config['quiet'] )
