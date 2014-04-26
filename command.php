@@ -2,40 +2,45 @@
 
 if ( !defined( 'WP_CLI' ) ) return;
 
-global $argv;
+class Environment_Command extends WP_CLI_Command {
 
-$env = $argv[1];
+    /**
+     * Execute WP-CLI against configuration for a given environment
+     *
+     * <environment>
+     * : Environment to run the command against
+     *
+     * <arg>
+     * : WP-CLI command, plus any positional arguments.
+     *
+     * [--assoc-args=<value>]
+     * : Any configuration or associative arguments
+     *
+     * @when before_wp_load
+     */
+    public function __invoke( $args, $assoc_args ) {
 
-$config = array();
+        global $argv;
 
-$config_path = getenv( 'HOME' ) . '/.wp-cli/config.yml';
+        array_walk($argv, function ($arg, $key) use (&$assoc_args)
+        {
+            if(preg_match('/^--([a-z]+)\=([a-zA-Z0-9]+)/', $arg, $match) == 1){
+              $assoc_args[$match[1]] = $match[2];
+            }
+        });
 
-if ( is_readable( $config_path ) ){
+        // Get your configuration values and merge with $assoc_args
+        $command = "wp " . implode( " ", $args );
+        foreach( $assoc_args as $key => $value ) {
+            $command .= " --{$key}={$value}";
+        }
 
-    $configurator = \WP_CLI::get_configurator();
-
-    $configurator->merge_yml( $config_path );
-    list( $config, $extra_config ) = $configurator->to_array();
+        WP_CLI::launch( $command );
+    }
 }
 
-if ( isset($config['color']) && 'auto' === $config['color'] ) {
-    $colorize = !\cli\Shell::isPiped();
-} elseif(isset($config['color'])) {
-    $colorize = $config['color'];
-}else {
-    $colorize = true;
-}
-
-if ( isset($config['quiet']) && $config['quiet'] )
-    $logger = new \WP_CLI\Loggers\Quiet;
-else
-    $logger = new \WP_CLI\Loggers\Regular( $colorize );
-
-\WP_CLI::set_logger( $logger );
-
-try {
-    $environment = new \ViewOne\Environment();
-    $environment->run($env);
-} catch (Exception $e) {
-    \WP_CLI::error( $e->getMessage() );
-}
+WP_CLI::add_command( 'local', 'Environment_Command' );
+WP_CLI::add_command( 'development', 'Environment_Command' );
+WP_CLI::add_command( 'production', 'Environment_Command' );
+WP_CLI::add_command( 'staging', 'Environment_Command' );
+WP_CLI::add_command( 'testing', 'Environment_Command' );
