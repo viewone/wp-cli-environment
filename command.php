@@ -2,6 +2,17 @@
 
 if ( !defined( 'WP_CLI' ) ) return;
 
+global $argv;
+
+$env = $argv[1];
+
+try {
+    $environment = new \ViewOne\Environment();
+    $environment->run($env);
+} catch (Exception $e) {
+    \WP_CLI::error( $e->getMessage() );
+}
+
 class Environment_Command extends WP_CLI_Command {
 
     /**
