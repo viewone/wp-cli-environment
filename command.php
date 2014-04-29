@@ -2,18 +2,11 @@
 
 if ( !defined( 'WP_CLI' ) ) return;
 
-global $argv;
+require_once 'src/ViewOne/Environment.php';
+require_once 'src/ViewOne/Environment/Command.php';
 
-$env = $argv[1];
-
-try {
-    $environment = new \ViewOne\Environment();
-    $environment->run($env);
-} catch (Exception $e) {
-    \WP_CLI::error( $e->getMessage() );
-}
-
-class Environment_Command extends WP_CLI_Command {
+class Environment_Command extends WP_CLI_Command
+{
 
     /**
      * Execute WP-CLI against configuration for a given environment
@@ -29,24 +22,20 @@ class Environment_Command extends WP_CLI_Command {
      *
      * @when before_wp_load
      */
-    public function __invoke( $args, $assoc_args ) {
-
+    public function __invoke($args, $assoc_args)
+    {
         global $argv;
 
-        array_walk($argv, function ($arg, $key) use (&$assoc_args)
-        {
-            if(preg_match('/^--([a-z]+)\=([a-zA-Z0-9]+)/', $arg, $match) == 1){
-              $assoc_args[$match[1]] = $match[2];
-            }
-        });
-
-        // Get your configuration values and merge with $assoc_args
-        $command = "wp " . implode( " ", $args );
-        foreach( $assoc_args as $key => $value ) {
-            $command .= " --{$key}={$value}";
+        try {
+            $environment = new \ViewOne\Environment();
+            $environment->run($argv[1]);
+        } catch (Exception $e) {
+            \WP_CLI::error( $e->getMessage() );
         }
 
-        WP_CLI::launch( $command );
+        $command = \ViewOne\Environment\Command::getCommand($args, $assoc_args);
+
+        WP_CLI::launch($command);
     }
 }
 
