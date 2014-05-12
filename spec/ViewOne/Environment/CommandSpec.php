@@ -12,22 +12,23 @@ class CommandSpec extends ObjectBehavior
     {
         global $argv;
 
-        $args = array('core', 'download');
+        $args = array('local', 'core', 'download');
 
-        $argv = array();
+        $argv = $args;
 
-        $this->getCommand($args, null)->shouldReturn('wp core download');
+        $this->getCommand('local')->shouldReturn('wp core download');
     }
 
     public function it_should_return_proper_command_with_parameters()
     {
         global $argv;
 
-        $args       = array('core', 'download');
-        $argsAsscoc = array('--path=wordpress', '--url=http://example.org');
+        global $argv;
 
-        $argv = array_merge($args, $argsAsscoc);
+        $args = array('local', 'core', 'download', '--path=wordpress', '--url=http://example.org', '--force');
 
-        $this->getCommand($args, null)->shouldReturn('wp core download --path=wordpress --url=http://example.org');
+        $argv = $args;
+
+        $this->getCommand('local')->shouldReturn('wp core download --path=wordpress --url=http://example.org --force');
     }
 }

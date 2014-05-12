@@ -2,42 +2,14 @@
 
 if ( !defined( 'WP_CLI' ) ) return;
 
-require_once 'src/ViewOne/Environment.php';
-require_once 'src/ViewOne/Environment/Command.php';
+require_once __DIR__ . '/src/ViewOne/Environment.php';
+require_once __DIR__ . '/src/ViewOne/Environment/Command.php';
+require_once __DIR__ . '/src/ViewOne/Environment/Generator.php';
 
-class Environment_Command extends WP_CLI_Command
-{
+$dir = \ViewOne\Environment\Generator::generateCommandClass();
+$dir = ViewOne\Environment\Generator::getCachePath();
 
-    /**
-     * Execute WP-CLI against configuration for a given environment
-     *
-     * <environment>
-     * : Environment to run the command against
-     *
-     * <arg>
-     * : WP-CLI command, plus any positional arguments.
-     *
-     * [--assoc-args=<value>]
-     * : Any configuration or associative arguments
-     *
-     * @when before_wp_load
-     */
-    public function __invoke($args, $assoc_args)
-    {
-        global $argv;
-
-        try {
-            $environment = new \ViewOne\Environment();
-            $environment->run($argv[1]);
-        } catch (Exception $e) {
-            \WP_CLI::error( $e->getMessage() );
-        }
-
-        $command = \ViewOne\Environment\Command::getCommand($args, $assoc_args);
-
-        WP_CLI::launch($command);
-    }
-}
+require_once $dir . '/wp-cli-environment/Command.php';
 
 WP_CLI::add_command( 'local', 'Environment_Command' );
 WP_CLI::add_command( 'development', 'Environment_Command' );

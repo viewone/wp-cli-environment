@@ -22,34 +22,114 @@ class Command
     /**
      * Build command striping evnironment variable
      *
-     * Method is using global $argv because dashed params which I suppose should
-     * be in $assocArgs aren't avaiable.
+     * Method is using global $argv
      *
-     * @param array $args      Commands
-     * @param array $assocArgs Parameters
+     * @param array $evnironment String
      *
      * @return string $command
      */
 
-    public static function getCommand($args, $assocArgs)
+    public static function getCommand($evnironment)
     {
         global $argv;
 
-        $localAssocArgs = array();
-
-        foreach ($argv as $arg) {
-            if (preg_match('/^--([a-z]+)\=([a-zA-Z0-9\:\/\.]+)/', $arg, $match) == 1) {
-                $localAssocArgs[$match[1]] = $match[2];
-            }
-        }
-
-        $assocArgs = $localAssocArgs;
+        $args        = self::getArguments($evnironment);
+        $assocParams = self::getAssocParameters();
+        $params      = self::getParameters();
 
         $command = "wp " . implode(" ", $args);
-        foreach ($assocArgs as $key => $value) {
-            $command .= " --{$key}={$value}";
+
+        foreach ($assocParams as $param) {
+
+            $command .= " --" . $param['param'] . "=" . $param['value'];
+        }
+
+        foreach ($params as $param) {
+
+            $command .= " --" . $param['param'];
         }
 
         return $command;
+    }
+
+    /**
+     * Get arguments from global $argv
+     *
+     * Method is using global $argv
+     *
+     * @param array $evnironment String
+     *
+     * @return array $localArgs
+     */
+
+    public static function getArguments($evnironment)
+    {
+        global $argv;
+
+        $localArgs = array();
+
+        foreach ($argv as $arg) {
+            if (preg_match("/^([a-zA-Z0-9'\"]{1}[a-zA-Z0-9-:'\"\/\.]+)$/", $arg, $match) == 1) {
+
+                if ($evnironment != $match[1]) {
+                    $localArgs[] = $match[1];
+                }
+            }
+        }
+
+        return $localArgs;
+    }
+
+    /**
+     * Get associative parameters from global $argv
+     *
+     * Method is using global $argv
+     *
+     * @return array $assocParams
+     */
+
+    public static function getAssocParameters()
+    {
+        global $argv;
+
+        $assocParams = array();
+
+        foreach ($argv as $arg) {
+            if (preg_match("/^--([a-zA-Z0-9]+)\=([a-zA-Z0-9:'\/\.]+)$/", $arg, $match) == 1) {
+
+                $assocParams[] = array(
+                    'param' => $match[1],
+                    'value' => $match[2],
+                );
+            }
+        }
+
+        return $assocParams;
+    }
+
+    /**
+     * Get single parameters from global $argv
+     *
+     * Method is using global $argv
+     *
+     * @return array $params
+     */
+
+    public static function getParameters()
+    {
+        global $argv;
+
+        $params = array();
+
+        foreach ($argv as $arg) {
+            if (preg_match("/^--([a-zA-Z0-9]+)$/", $arg, $match) == 1) {
+
+                $params[] = array(
+                    'param' => $match[1],
+                );
+            }
+        }
+
+        return $params;
     }
 }
