@@ -22,7 +22,7 @@
  * @link      https://github.com/viewone
  */
 
-namespace ViewOne\Environment;
+namespace ViewOne\WPCLIEnvironment;
 
 class Generator
 {
@@ -56,9 +56,9 @@ class Generator
 
     public static function generateCommandClass()
     {
-        $args  = \ViewOne\Environment\Command::getArguments('local');
-        $assocParams = \ViewOne\Environment\Command::getAssocParameters();
-        $params = \ViewOne\Environment\Command::getParameters();
+        $args  = \ViewOne\WPCLIEnvironment\Command::getArguments('local');
+        $assocParams = \ViewOne\WPCLIEnvironment\Command::getAssocParameters();
+        $params = \ViewOne\WPCLIEnvironment\Command::getParameters();
 
         $moutstache = new \Mustache_Engine;
 

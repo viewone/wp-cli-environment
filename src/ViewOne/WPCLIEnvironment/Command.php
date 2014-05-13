@@ -15,7 +15,7 @@
  * @link      https://github.com/viewone
  */
 
-namespace ViewOne\Environment;
+namespace ViewOne\WPCLIEnvironment;
 
 class Command
 {
