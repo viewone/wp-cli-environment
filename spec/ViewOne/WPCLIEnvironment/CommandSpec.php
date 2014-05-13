@@ -23,8 +23,6 @@ class CommandSpec extends ObjectBehavior
     {
         global $argv;
 
-        global $argv;
-
         $args = array('local', 'core', 'download', '--path=wordpress', '--url=http://example.org', '--force');
 
         $argv = $args;
