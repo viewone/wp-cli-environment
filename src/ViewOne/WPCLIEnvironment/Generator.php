@@ -65,7 +65,7 @@ class Generator
         $dir = self::getCachePath();
 
         if (!file_exists($dir . '/wp-cli-environment')) {
-            mkdir($dir . '/wp-cli-environment');
+            mkdir($dir . '/wp-cli-environment', 0777, true);
         }
 
         $template = file_get_contents(__DIR__ . '/../../../template/command.mustache');
