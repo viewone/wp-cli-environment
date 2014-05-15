@@ -69,10 +69,16 @@ class Command
         $localArgs = array();
 
         foreach ($argv as $arg) {
-            if (preg_match("/^([a-zA-Z0-9'\"]{1}[a-zA-Z0-9-:'\"\/\.]+)$/", $arg, $match) == 1) {
+            if (preg_match("/^(?!(--|\/)).+$/", $arg, $match) == 1) {
 
-                if ($evnironment != $match[1]) {
-                    $localArgs[] = $match[1];
+                if ($evnironment != $match[0]) {
+
+                    //Check if argument has spaces if so wrap argument with quotation marks
+                    if (preg_match('/\s/', $match[0])) {
+                        $localArgs[] = '"' . $match[0] . '"';
+                    } else {
+                        $localArgs[] = $match[0];
+                    }
                 }
             }
         }
@@ -95,7 +101,7 @@ class Command
         $assocParams = array();
 
         foreach ($argv as $arg) {
-            if (preg_match("/^--([a-zA-Z0-9]+)\=([a-zA-Z0-9:'\/\.]+)$/", $arg, $match) == 1) {
+            if (preg_match("/^--([a-zA-Z0-9-]+)\=([a-zA-Z0-9:'\/\.]+)$/", $arg, $match) == 1) {
 
                 $assocParams[] = array(
                     'param' => $match[1],
@@ -122,7 +128,7 @@ class Command
         $params = array();
 
         foreach ($argv as $arg) {
-            if (preg_match("/^--([a-zA-Z0-9]+)$/", $arg, $match) == 1) {
+            if (preg_match("/^--([a-zA-Z0-9-]+)$/", $arg, $match) == 1) {
 
                 $params[] = array(
                     'param' => $match[1],
