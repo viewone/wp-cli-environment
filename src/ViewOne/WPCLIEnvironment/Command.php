@@ -19,21 +19,29 @@ namespace ViewOne\WPCLIEnvironment;
 
 class Command
 {
+
     /**
-     * Build command striping evnironment variable
+     * Avaiable environments
+     *
+     * TO-DO: Find way to not repeat variables from Environment class.
+     *
+     * @var array
+     */
+    private static $environments = array( 'local', 'development', 'testing', 'staging', 'production' );
+
+    /**
+     * Build command
      *
      * Method is using global $argv
-     *
-     * @param array $evnironment String
      *
      * @return string $command
      */
 
-    public static function getCommand($evnironment)
+    public static function getCommand()
     {
         global $argv;
 
-        $args        = self::getArguments($evnironment);
+        $args        = self::getArguments();
         $assocParams = self::getAssocParameters();
         $params      = self::getParameters();
 
@@ -57,12 +65,10 @@ class Command
      *
      * Method is using global $argv
      *
-     * @param array $evnironment String
-     *
      * @return array $localArgs
      */
 
-    public static function getArguments($evnironment)
+    public static function getArguments()
     {
         global $argv;
 
@@ -71,7 +77,7 @@ class Command
         foreach ($argv as $arg) {
             if (preg_match("/^(?!(--|\/)).+$/", $arg, $match) == 1) {
 
-                if ($evnironment != $match[0]) {
+                if (array_search($match[0], self::$environments) === false) {
 
                     //Check if argument has spaces if so wrap argument with quotation marks
                     if (preg_match('/\s/', $match[0])) {

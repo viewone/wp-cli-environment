@@ -56,7 +56,7 @@ class Generator
 
     public static function generateCommandClass()
     {
-        $args  = \ViewOne\WPCLIEnvironment\Command::getArguments('local');
+        $args  = \ViewOne\WPCLIEnvironment\Command::getArguments();
         $assocParams = \ViewOne\WPCLIEnvironment\Command::getAssocParameters();
         $params = \ViewOne\WPCLIEnvironment\Command::getParameters();
 
