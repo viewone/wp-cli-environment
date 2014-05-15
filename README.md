@@ -9,16 +9,7 @@ WP-CLI allow you to have two wp-cli.yml files. One global `wp-cli.yml` and one f
 
 ##Installation
 
-This package can't be installed globaly. If you want to use it you must install it with your project composer file. Simply add wp-cli and wp-cli-environment to composer and install packages.
-
-```
-php composer.phar config repositories.wp-cli composer 'http://wp-cli.org/package-index/'
-php composer.phar require wp-cli/wp-cli=~0.15
-php composer.phar require viewone/wp-cli-environment=dev-master
-php composer.phar install
-```
-
-After installation you can start using wp-cli-environment with your local installation e.g. `./vendor/bin/wp production core download`
+To install package follow instructions from wp-cli documentation https://github.com/wp-cli/wp-cli/wiki/Community-Packages
 
 ##Getting Started
 Create directory `config` and put inside file `wp-cli.production.yml`. Content of `wp-cli.production.yml` is standard `wp-cli.yml` file and it can looks like.
@@ -39,7 +30,7 @@ disabled_commands:
 Exec command:
 
 ```
-./vendor/bin/wp production core download
+wp production core download
 ```
 
 WP-CLI will download WordPress using settings in `wp-cli.production.yml` file. Not so impressive. WP-CLI-Environment is design to work with multiple `wp-cli.yml` files so now create `wp-cli.developemnt.yml` file in `config` directory with content.
@@ -57,12 +48,12 @@ core config:
 Exec command:
 
 ```
-./vendor/bin/wp production core config
+wp production core config
 ```
 As you see wp-cli created wp-config.php with settings from `wp-cli.production.yml`. Delete wp-config.php and exec command:
 
 ```
-./vendor/bin/wp development core config
+wp development core config
 ```
 Now hovewever wp-cli created wp-config.php with settings from `wp-cli.development.yml`
 
@@ -70,7 +61,7 @@ Now hovewever wp-cli created wp-config.php with settings from `wp-cli.developmen
 
 WP-CLI-Environment support 5 environments: `local`, `development`, `testing`, `staging`, `production`. For each environment you can create `wp-cli.environment.yml` file e.g.: `wp-cli.testing.yml` or `wp-cli.staging.yml`. All environments files must be in config directory.
 
-When you want to refer to particular file when executing wp-cli command simply type environment as first argument e.g: `./vendor/bin/wp testing core download` or `./vendor/bin/wp staging core config`.
+When you want to refer to particular file when executing wp-cli command simply type environment as first argument e.g: `wp testing core download` or `wp staging core config`.
 
 If there is no `wp-cli.environemnt.yml` file. You will se an error about this.
 
