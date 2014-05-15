@@ -15,7 +15,8 @@
     "czproject/phpdepend": "~1.0",
     "phploc/phploc": "~2.0",
     "phpmd/phpmd": "~1.5",
-    "fabpot/php-cs-fixer": "~0.4"
+    "fabpot/php-cs-fixer": "~0.4",
+    "mustache/mustache": "~2.4"
   },
   "autoload": {
     "psr-0": {

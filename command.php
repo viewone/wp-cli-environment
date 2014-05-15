@@ -2,40 +2,17 @@
 
 if ( !defined( 'WP_CLI' ) ) return;
 
-global $argv;
+require_once __DIR__ . '/src/ViewOne/WPCLIEnvironment/Environment.php';
+require_once __DIR__ . '/src/ViewOne/WPCLIEnvironment/Command.php';
+require_once __DIR__ . '/src/ViewOne/WPCLIEnvironment/Generator.php';
 
-$env = $argv[1];
+$dir = \ViewOne\WPCLIEnvironment\Generator::generateCommandClass();
+$dir = \ViewOne\WPCLIEnvironment\Generator::getCachePath();
 
-$config = array();
+require_once $dir . '/wp-cli-environment/Command.php';
 
-$config_path = getenv( 'HOME' ) . '/.wp-cli/config.yml';
-
-if ( is_readable( $config_path ) ){
-
-    $configurator = \WP_CLI::get_configurator();
-
-    $configurator->merge_yml( $config_path );
-    list( $config, $extra_config ) = $configurator->to_array();
-}
-
-if ( isset($config['color']) && 'auto' === $config['color'] ) {
-    $colorize = !\cli\Shell::isPiped();
-} elseif(isset($config['color'])) {
-    $colorize = $config['color'];
-}else {
-    $colorize = true;
-}
-
-if ( isset($config['quiet']) && $config['quiet'] )
-    $logger = new \WP_CLI\Loggers\Quiet;
-else
-    $logger = new \WP_CLI\Loggers\Regular( $colorize );
-
-\WP_CLI::set_logger( $logger );
-
-try {
-    $environment = new \ViewOne\Environment();
-    $environment->run($env);
-} catch (Exception $e) {
-    \WP_CLI::error( $e->getMessage() );
-}
+WP_CLI::add_command( 'local', 'Environment_Command' );
+WP_CLI::add_command( 'development', 'Environment_Command' );
+WP_CLI::add_command( 'production', 'Environment_Command' );
+WP_CLI::add_command( 'staging', 'Environment_Command' );
+WP_CLI::add_command( 'testing', 'Environment_Command' );
