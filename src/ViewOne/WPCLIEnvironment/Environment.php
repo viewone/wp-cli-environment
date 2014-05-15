@@ -15,7 +15,7 @@
  * @link      https://github.com/viewone
  */
 
-namespace ViewOne;
+namespace ViewOne\WPCLIEnvironment;
 
 class Environment
 {

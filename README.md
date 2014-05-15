@@ -9,16 +9,7 @@ WP-CLI allow you to have two wp-cli.yml files. One global `wp-cli.yml` and one f
 
 ##Installation
 
-This package can't be installed globaly. If you want to use it you must install it with your project composer file. Simply add wp-cli and wp-cli-environment to composer and install packages.
-
-```
-php composer.phar config repositories.wp-cli composer 'http://wp-cli.org/package-index/'
-php composer.phar require wp-cli/wp-cli=~0.15
-php composer.phar require viewone/wp-cli-environment=dev-master
-php composer.phar install
-```
-
-After installation you can start using wp-cli-environment with your local installation e.g. `./vendor/bin/wp production core download`
+To install package follow instructions from wp-cli documentation https://github.com/wp-cli/wp-cli/wiki/Community-Packages
 
 ##Getting Started
 Create directory `config` and put inside file `wp-cli.production.yml`. Content of `wp-cli.production.yml` is standard `wp-cli.yml` file and it can looks like.
