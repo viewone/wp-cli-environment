@@ -22,8 +22,7 @@ class Environment_Command extends WP_CLI_Command
         global $argv;
 
         try {
-            $environment = new \ViewOne\WPCLIEnvironment\Environment();
-            $environment->run($argv[1]);
+            \ViewOne\WPCLIEnvironment\Environment::run($argv[1]);
         } catch (Exception $e) {
             \WP_CLI::error( $e->getMessage() );
         }
