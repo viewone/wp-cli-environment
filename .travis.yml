@@ -8,3 +8,8 @@ before_script:
   - composer install
 
 script: ./build/build.sh
+
+branches:
+  only:
+    - master
+    - develop
