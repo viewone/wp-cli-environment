@@ -7,6 +7,8 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
+use \WPCLIEnvironment\Generator;
+
 class GeneratorSpec extends ObjectBehavior
 {
 
@@ -32,7 +34,7 @@ class GeneratorSpec extends ObjectBehavior
 
         $argv = $args;
 
-        \WPCLIEnvironment\Generator::generateCommandClass();
+        Generator::generateCommandClass();
 
         $test_class = file_get_contents(__DIR__ . '/../template/CommandArguments.php');
 
@@ -48,7 +50,7 @@ class GeneratorSpec extends ObjectBehavior
 
         $argv = $args;
 
-        \WPCLIEnvironment\Generator::generateCommandClass();
+        Generator::generateCommandClass();
 
         $test_class = file_get_contents(__DIR__ . '/../template/CommandArgumentsParameters.php');
 
@@ -60,7 +62,7 @@ class GeneratorSpec extends ObjectBehavior
         return array(
             'haveGenerateFile' => function($subject, $file) {
 
-                $dir = \WPCLIEnvironment\Generator::getCachePath();
+                $dir = Generator::getCachePath();
 
                 $generatedClass = file_get_contents($dir . '/wp-cli-environment/Command.php');
                 return $generatedClass === $file;
