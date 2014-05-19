@@ -24,6 +24,8 @@
 
 namespace ViewOne\WPCLIEnvironment;
 
+use ViewOne\WPCLIEnvironment\Command;
+
 class Generator
 {
     /**
@@ -56,9 +58,9 @@ class Generator
 
     public static function generateCommandClass()
     {
-        $args  = \ViewOne\WPCLIEnvironment\Command::getArguments();
-        $assocParams = \ViewOne\WPCLIEnvironment\Command::getAssocParameters();
-        $params = \ViewOne\WPCLIEnvironment\Command::getParameters();
+        $args  = Command::getArguments();
+        $assocParams = Command::getAssocParameters();
+        $params = Command::getParameters();
 
         $moutstache = new \Mustache_Engine;
 
