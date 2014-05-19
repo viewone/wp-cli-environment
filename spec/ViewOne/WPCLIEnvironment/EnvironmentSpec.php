@@ -8,11 +8,10 @@ use Prophecy\Argument;
 class EnvironmentSpec extends ObjectBehavior
 {
 
-
-    public function it_should_not_break_if_there_is_no_environment_argument()
+    public function let()
     {
-
-        self::run(null)->shouldNotThrow('\Exception');
+        \ViewOne\WPCLIEnvironment\Environment::$environment = null;
+        \ViewOne\WPCLIEnvironment\Environment::$config = null;
     }
 
     public function it_should_set_WP_CLI_CONFIG_PATH_to_wp_cli_production_yml_if_there_is_production_as_argument()
@@ -51,6 +50,12 @@ class EnvironmentSpec extends ObjectBehavior
         $obj = new \stdClass();
 
         $this->shouldThrow(new \Exception('$environment should be string or null insted of ' . gettype($obj) . '.'))->duringRun($obj);
+    }
+
+    public function it_should_not_break_if_there_is_no_environment_argument()
+    {
+
+        $this->shouldNotThrow('\Exception')->duringRun(null);
     }
 
     public function getMatchers()
