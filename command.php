@@ -2,12 +2,12 @@
 
 if ( !defined( 'WP_CLI' ) ) return;
 
-require_once __DIR__ . '/src/ViewOne/WPCLIEnvironment/Environment.php';
-require_once __DIR__ . '/src/ViewOne/WPCLIEnvironment/Command.php';
-require_once __DIR__ . '/src/ViewOne/WPCLIEnvironment/Generator.php';
+require_once __DIR__ . '/src/WPCLIEnvironment/Environment.php';
+require_once __DIR__ . '/src/WPCLIEnvironment/Command.php';
+require_once __DIR__ . '/src/WPCLIEnvironment/Generator.php';
 
-$dir = \ViewOne\WPCLIEnvironment\Generator::generateCommandClass();
-$dir = \ViewOne\WPCLIEnvironment\Generator::getCachePath();
+$dir = \WPCLIEnvironment\Generator::generateCommandClass();
+$dir = \WPCLIEnvironment\Generator::getCachePath();
 
 require_once $dir . '/wp-cli-environment/Command.php';
 

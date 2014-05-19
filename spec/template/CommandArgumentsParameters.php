@@ -1,7 +1,7 @@
 <?php
 
-use ViewOne\WPCLIEnvironment\Command;
-use ViewOne\WPCLIEnvironment\Environment;
+use WPCLIEnvironment\Command;
+use WPCLIEnvironment\Environment;
 
 class Environment_Command extends WP_CLI_Command
 {

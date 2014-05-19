@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-0": {
-      "ViewOne": "src/"
+      "WPCLIEnvironment": "src/"
     },
     "files": [ "command.php" ]
   }

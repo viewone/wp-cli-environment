@@ -22,9 +22,9 @@
  * @link      https://github.com/viewone
  */
 
-namespace ViewOne\WPCLIEnvironment;
+namespace WPCLIEnvironment;
 
-use ViewOne\WPCLIEnvironment\Command;
+use WPCLIEnvironment\Command;
 
 class Generator
 {
@@ -70,7 +70,7 @@ class Generator
             mkdir($dir . '/wp-cli-environment', 0777, true);
         }
 
-        $template = file_get_contents(__DIR__ . '/../../../template/command.mustache');
+        $template = file_get_contents(__DIR__ . '/../../template/command.mustache');
         $variables = array('args' => $args, 'assoc_params' => $assocParams, 'params' => $params);
 
         $class = $moutstache->render($template, $variables);

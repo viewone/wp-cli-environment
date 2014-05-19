@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\ViewOne\WPCLIEnvironment;
+namespace spec\WPCLIEnvironment;
 
-require_once __DIR__ . '/../../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -32,9 +32,9 @@ class GeneratorSpec extends ObjectBehavior
 
         $argv = $args;
 
-        \ViewOne\WPCLIEnvironment\Generator::generateCommandClass();
+        \WPCLIEnvironment\Generator::generateCommandClass();
 
-        $test_class = file_get_contents(__DIR__ . '/../../template/CommandArguments.php');
+        $test_class = file_get_contents(__DIR__ . '/../template/CommandArguments.php');
 
         $this->shouldHaveGenerateFile($test_class);
     }
@@ -48,9 +48,9 @@ class GeneratorSpec extends ObjectBehavior
 
         $argv = $args;
 
-        \ViewOne\WPCLIEnvironment\Generator::generateCommandClass();
+        \WPCLIEnvironment\Generator::generateCommandClass();
 
-        $test_class = file_get_contents(__DIR__ . '/../../template/CommandArgumentsParameters.php');
+        $test_class = file_get_contents(__DIR__ . '/../template/CommandArgumentsParameters.php');
 
         $this->shouldHaveGenerateFile($test_class);
     }
@@ -60,7 +60,7 @@ class GeneratorSpec extends ObjectBehavior
         return array(
             'haveGenerateFile' => function($subject, $file) {
 
-                $dir = \ViewOne\WPCLIEnvironment\Generator::getCachePath();
+                $dir = \WPCLIEnvironment\Generator::getCachePath();
 
                 $generatedClass = file_get_contents($dir . '/wp-cli-environment/Command.php');
                 return $generatedClass === $file;
