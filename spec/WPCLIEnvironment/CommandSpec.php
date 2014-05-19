@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\ViewOne\WPCLIEnvironment;
+namespace spec\WPCLIEnvironment;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

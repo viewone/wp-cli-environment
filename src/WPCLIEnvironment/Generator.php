@@ -22,7 +22,9 @@
  * @link      https://github.com/viewone
  */
 
-namespace ViewOne\WPCLIEnvironment;
+namespace WPCLIEnvironment;
+
+use WPCLIEnvironment\Command;
 
 class Generator
 {
@@ -56,9 +58,9 @@ class Generator
 
     public static function generateCommandClass()
     {
-        $args  = \ViewOne\WPCLIEnvironment\Command::getArguments();
-        $assocParams = \ViewOne\WPCLIEnvironment\Command::getAssocParameters();
-        $params = \ViewOne\WPCLIEnvironment\Command::getParameters();
+        $args  = Command::getArguments();
+        $assocParams = Command::getAssocParameters();
+        $params = Command::getParameters();
 
         $moutstache = new \Mustache_Engine;
 
@@ -68,7 +70,7 @@ class Generator
             mkdir($dir . '/wp-cli-environment', 0777, true);
         }
 
-        $template = file_get_contents(__DIR__ . '/../../../template/command.mustache');
+        $template = file_get_contents(__DIR__ . '/../../template/command.mustache');
         $variables = array('args' => $args, 'assoc_params' => $assocParams, 'params' => $params);
 
         $class = $moutstache->render($template, $variables);

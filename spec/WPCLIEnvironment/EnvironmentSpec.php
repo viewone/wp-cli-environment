@@ -1,12 +1,18 @@
 <?php
 
-namespace spec\ViewOne\WPCLIEnvironment;
+namespace spec\WPCLIEnvironment;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class EnvironmentSpec extends ObjectBehavior
 {
+
+    public function let()
+    {
+        \WPCLIEnvironment\Environment::$environment = null;
+        \WPCLIEnvironment\Environment::$config = null;
+    }
 
     public function it_should_set_WP_CLI_CONFIG_PATH_to_wp_cli_production_yml_if_there_is_production_as_argument()
     {

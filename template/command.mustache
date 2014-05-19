@@ -1,5 +1,8 @@
 <?php
 
+use WPCLIEnvironment\Command;
+use WPCLIEnvironment\Environment;
+
 class Environment_Command extends WP_CLI_Command
 {
 
@@ -26,13 +29,12 @@ class Environment_Command extends WP_CLI_Command
         global $argv;
 
         try {
-            $environment = new \ViewOne\WPCLIEnvironment\Environment();
-            $environment->run($argv[1]);
+            Environment::run($argv[1]);
         } catch (Exception $e) {
             \WP_CLI::error( $e->getMessage() );
         }
 
-        $command = \ViewOne\WPCLIEnvironment\Command::getCommand($args, $assoc_args);
+        $command = Command::getCommand($args, $assoc_args);
 
         WP_CLI::launch($command);
     }

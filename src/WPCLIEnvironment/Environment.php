@@ -15,7 +15,7 @@
  * @link      https://github.com/viewone
  */
 
-namespace ViewOne\WPCLIEnvironment;
+namespace WPCLIEnvironment;
 
 class Environment
 {
@@ -25,14 +25,14 @@ class Environment
      *
      * @var array
      */
-    private $environments = array( 'local', 'development', 'testing', 'staging', 'production' );
+    public static $environments = array( 'local', 'development', 'testing', 'staging', 'production' );
 
     /**
      * Config file
      *
      * @var string
      */
-    private $config = null;
+    public static $config = null;
 
     /**
      * Environment
@@ -41,7 +41,7 @@ class Environment
      *
      * @var string
      */
-    private $environment = null;
+    public static $environment = null;
 
     /**
      * Set WP_CLI_CONFIG_PATH based on second argument passed to wp
@@ -63,17 +63,17 @@ class Environment
      *
      * @return void
      */
-    public function run($environment)
+    public static function run($environment)
     {
         if (!is_string($environment) && !is_null($environment)) {
             throw new \Exception('$environment should be string or null insted of ' . gettype($environment) . '.');
         }
 
-        $this->resolveEnvironment($environment);
-        $this->resolveConfig();
+        self::resolveEnvironment($environment);
+        self::resolveConfig();
 
-        if ($this->config) {
-            putenv("WP_CLI_CONFIG_PATH=" . $this->config);
+        if (self::$config) {
+            putenv("WP_CLI_CONFIG_PATH=" . self::$config);
         }
     }
 
@@ -99,13 +99,13 @@ class Environment
      * @return void
      */
 
-    private function resolveEnvironment($environment)
+    private static function resolveEnvironment($environment)
     {
         global $argv;
 
-        if (array_search($environment, $this->environments) !== false) {
+        if (array_search($environment, self::$environments) !== false) {
             unset($argv[1]);
-            $this->environment = $environment;
+            self::$environment = $environment;
         }
     }
 
@@ -120,15 +120,15 @@ class Environment
      * @return void
      */
 
-    private function resolveConfig()
+    private static function resolveConfig()
     {
-        if ($this->environment) {
+        if (self::$environment) {
 
-            $configFile = 'wp-cli.' . $this->environment . '.yml';
+            $configFile = 'wp-cli.' . self::$environment . '.yml';
             $configPath = getcwd() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . $configFile;
 
             if (file_exists($configPath)) {
-                $this->config = $configPath;
+                self::$config = $configPath;
             } else {
                 throw new \Exception('File ' . $configPath . ' doesn\'t exists.');
             }
