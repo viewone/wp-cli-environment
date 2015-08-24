@@ -63,7 +63,7 @@ WP-CLI-Environment support 5 environments: `local`, `development`, `testing`, `s
 
 When you want to refer to particular file when executing wp-cli command simply type environment as first argument e.g: `wp testing core download` or `wp staging core config`.
 
-If there is no `wp-cli.environemnt.yml` file. You will se an error about this.
+If there is no `wp-cli.environment.yml` file. You will se an error about this.
 
 ##The order of precedence
 
