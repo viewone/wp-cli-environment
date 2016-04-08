@@ -2,6 +2,7 @@
   "name": "viewone/wp-cli-environment",
   "license": "MIT",
   "description": "Environment package for wp-cli",
+  "homepage": "https://github.com/viewone/wp-cli-environment",
   "authors": [
     {
       "name": "Piotr Kierzniewski",
